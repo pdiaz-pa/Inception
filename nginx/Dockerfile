@@ -1,5 +1,5 @@
 FROM nginx:latest
-EXPOSE 80
+EXPOSE 80 443
 COPY ./index.html /usr/share/nginx/html/
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 RUN apt-get -y install openssl
