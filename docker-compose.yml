@@ -1,3 +1,6 @@
 services:
   nginx:
-    
+    container_name: nginx_container
+    build: ./nginx
+    restart: unless-stopped
+
