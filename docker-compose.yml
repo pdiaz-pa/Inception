@@ -1,3 +1,6 @@
+networks:
+  localhost: 
+    name: inception_network
 services:
   nginx:
     container_name: nginx_container
@@ -5,4 +8,11 @@ services:
     restart: unless-stopped
     ports:
       - "443:443"
-
+    networks:
+      - localhost
+  wordpress:
+    container_name: wp_container
+    build: ./wordpress
+    restart: unless-stopped
+    networks:
+      - localhost
