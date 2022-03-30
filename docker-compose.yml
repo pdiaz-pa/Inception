@@ -4,7 +4,7 @@ networks:
 services:
   nginx:
     container_name: nginx_container
-    build: ./nginx
+    build: ./requirements/nginx
     restart: unless-stopped
     ports:
       - "443:443"
@@ -12,7 +12,13 @@ services:
       - localhost
   wordpress:
     container_name: wp_container
-    build: ./wordpress
+    build: ./requirements/wordpress
+    restart: unless-stopped
+    networks:
+      - localhost
+  mariadb:
+    container_name: mariadb_container
+    build: ./requirements/mariadb
     restart: unless-stopped
     networks:
       - localhost
