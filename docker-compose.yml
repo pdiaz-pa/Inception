@@ -9,15 +9,22 @@ services:
       - "443:443"
     networks:
       - default
+    #volumes:
+    #  - wordpress:/var/www/wordpress
   wordpress:
     container_name: wp_container
     build: ./requirements/wordpress
     restart: unless-stopped
     networks:
       - default
+    #volumes:
+    #  - wordpress:/var/www/wordpress
   mariadb:
     container_name: mariadb_container
     build: ./requirements/mariadb
     restart: unless-stopped
     networks:
       - default
+volumes:
+  wordpress:
+    name: wordpress_db

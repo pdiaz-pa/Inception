@@ -7,6 +7,9 @@ server {
     server_name pdiaz-pa.42.fr;
     ssl_protocols TLSv1.2 TLSv1.3;
 
+    index index.php;
+    root /var/www/wordpress;
+
     location / {
         root   /usr/share/nginx/html;
         index  index.html index.htm;
