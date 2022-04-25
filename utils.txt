@@ -10,3 +10,10 @@ Navegar containers:
 docker exec -t -i "mycontainer" /bin/bash
 
 
+
+Configurar automaticamente el wordpress
+
+
+nginx default
+
+
