@@ -20,20 +20,20 @@ RUN cd /var/www && tar xzvf latest.tar.gz
 #RUN mkdir -p /run/php
 
 WORKDIR /tmp/
-ENV BUILDDIR=/tmp/build/
-RUN mkdir ${BUILDDIR}
+RUN mkdir /tmp/build/
 
-COPY src/ ${WORKDIR}
+COPY src/ /tmp/
 
 RUN mkdir -p /run/php
 
-RUN tar xzf /var/www/latest.tar.gz --directory ${BUILDDIR} && \
-	mv wp-config.php ${BUILDDIR} && \
-	mv index.php ${BUILDDIR}
+RUN tar xzf /var/www/latest.tar.gz --directory /tmp/build/ && \
+	mv wp-config.php /tmp/build//wordpress && \
+	mv index.php /tmp/build/wordpress
 
-RUN chmod -R 777 ${BUILDDIR}
+RUN chmod -R 777 /tmp/build/wordpress/
 
 RUN sed 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 0.0.0.0:9000/' -i /etc/php/7.3/fpm/pool.d/www.conf
+
 
 EXPOSE 9000
 CMD ["php-fpm7.3", "-F"]

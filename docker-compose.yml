@@ -1,8 +1,42 @@
 volumes:
   wordpress:
-    name: wordpress_db
+    name: wordpress
+  database:
+    name: database
 
 services:
+  mariadb:
+    container_name: mariadb_container
+    build: ./requirements/mariadb
+    networks:
+      - default
+    volumes:
+      - database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: caldodepollo
+      MYSQL_DATABASE: wp_db
+      MYSQL_USER: pdiaz-pa
+      MYSQL_PASSWORD: caldodepollo
+    restart: unless-stopped
+  wordpress:
+    container_name: wp_container
+    build: ./requirements/wordpress
+    volumes:
+      - wordpress:/var/www/wordpress
+    depends_on:
+      - mariadb
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: caldodepollo
+      WORDPRESS_DB_NAME: wp_db
+      WORDPRESS_DB_USER: pdiaz-pa
+      WORDPRESS_DB_PASSWORD: caldodepollo
+      WORDPRESS_TABLE_PREFIX: wp_
+    links:
+      - mariadb
+    networks:
+      - default
+    restart: unless-stopped
   nginx:
     container_name: nginx_container
     build: ./requirements/nginx
@@ -15,23 +49,7 @@ services:
       - default
     volumes:
       - wordpress:/var/www/wordpress
-  wordpress:
-    container_name: wp_container
-    build: ./requirements/wordpress
-    restart: unless-stopped
-    env_file: .env
-    environment:
-      - WORDPRESS_DB_HOST=db:9000
-      - WORDPRESS_DB_USER=$MYSQL_USER
-      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
-      - WORDPRESS_DB_NAME=wordpress
-    networks:
-      - default
-    volumes:
-      - wordpress:/var/www/wordpress
-  mariadb:
-    container_name: mariadb_container
-    build: ./requirements/mariadb
-    restart: unless-stopped
-    networks:
-      - default
+    links:
+      - wordpress
+
+
