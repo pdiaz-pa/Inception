@@ -33,7 +33,13 @@ RUN tar xzf /var/www/latest.tar.gz --directory /tmp/build/ && \
 RUN chmod -R 777 /tmp/build/wordpress/
 
 RUN sed 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 0.0.0.0:9000/' -i /etc/php/7.3/fpm/pool.d/www.conf
+RUN chown -R www-data:www-data /var/www/
 
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
+RUN cd build/wordpress
+#RUN wp --path=/tmp/build/wordpress --allow-root core install  --url=https://pdiaz-pa.42.fr --title=TremendoWebSite --admin_user=pdiaz-pa --admin_password=caldodepollo --admin_email=pdiaz-pa@student.42.fr 
 
 EXPOSE 9000
 CMD ["php-fpm7.3", "-F"]
