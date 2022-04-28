@@ -39,7 +39,8 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 RUN cd build/wordpress
-#RUN wp --path=/tmp/build/wordpress --allow-root core install  --url=https://pdiaz-pa.42.fr --title=TremendoWebSite --admin_user=pdiaz-pa --admin_password=caldodepollo --admin_email=pdiaz-pa@student.42.fr 
-
 EXPOSE 9000
+#RUN wp --path=/tmp/build/wordpress --allow-root core install  --url="https://localhost/" --title="TremendoWebSite" --admin_user="pdiaz-pa" --admin_password="caldodepollo" --admin_email="pdiaz-pa@student.42.fr" 
+
+
 CMD ["php-fpm7.3", "-F"]

@@ -18,6 +18,7 @@ services:
       MYSQL_USER: pdiaz-pa
       MYSQL_PASSWORD: caldodepollo
     restart: unless-stopped
+
   wordpress:
     container_name: wp_container
     build: ./requirements/wordpress
@@ -37,6 +38,7 @@ services:
     networks:
       - default
     restart: unless-stopped
+  
   nginx:
     container_name: nginx_container
     build: ./requirements/nginx
