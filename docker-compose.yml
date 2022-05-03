@@ -1,9 +1,3 @@
-volumes:
-  wordpress:
-    name: wordpress
-  database:
-    name: database
-
 services:
   mariadb:
     container_name: mariadb_container
@@ -54,4 +48,9 @@ services:
     links:
       - wordpress
 
-
+volumes:
+  wordpress:
+    name: wordpress
+  database:
+    name: database
+      
