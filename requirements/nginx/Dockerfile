@@ -16,4 +16,8 @@ RUN chmod -R 777 /tmp/build/
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=ES/ST=Madrid/L=Madrid/O=42Madrid/OU=JAT/CN=Inception"
 EXPOSE 443
-CMD ["nginx", "-g", "daemon off;"]
+
+RUN chmod -R 777 /tmp/build/
+
+CMD cp -a /tmp/build/. /var/www/ && \
+	nginx -g 'daemon off;'
