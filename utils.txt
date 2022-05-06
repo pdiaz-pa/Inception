@@ -17,4 +17,5 @@ No sé cómo ver la base de datos desde Wordpress, si intento autoconfigurar me 
 
 nginx default
 
-
+Conectarse por SSH a la máquina virtual
+ssh pdiaz-pa@127.0.0.1 -p 2222
