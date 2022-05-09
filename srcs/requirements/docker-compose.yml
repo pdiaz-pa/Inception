@@ -5,14 +5,14 @@ services:
     networks:
       - default
     volumes:
-      - database:/var/lib/mysql
+      - ${HOME}/data/mariadb:/var/lib/mysql
     restart: unless-stopped
 
   wordpress:
     container_name: wp_container
     build: ./wordpress
     volumes:
-      - wordpress:/var/www/wordpress
+      - ${HOME}/data/wordpress:/var/www/wordpress
     depends_on:
       - mariadb
     links:
@@ -32,13 +32,23 @@ services:
     networks:
       - default
     volumes:
-      - wordpress:/var/www/wordpress
+      - ${HOME}/data/wordpress:/var/www/wordpress
     links:
       - wordpress
 
 volumes:
   wordpress:
     name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      device: ${HOME}/data/wordpress
+      o: bind
   database:
     name: database
+    driver: local
+    driver_opts:
+      type: none
+      device: ${HOME}/data/mariadb
+      o: bind
       
