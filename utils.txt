@@ -10,11 +10,6 @@ Navegar containers:
 docker exec -t -i "mycontainer" /bin/bash
 
 
-
-Configurar automaticamente el wordpress
-No sé cómo ver la base de datos desde Wordpress, si intento autoconfigurar me dice que no la encuentra
-
-
 nginx default
 
 Conectarse por SSH a la máquina virtual

@@ -13,7 +13,5 @@ RUN 	sed 's/bind-address            = 127.0.0.1/bind-address            = 0.0.0.
 RUN chmod 777 /var/lib/mysql/*
 #RUN mv /tmp/mariadb/mydb.sql /var/lib/mysql
 
-#COPY mariadb-server.cnf /etc/my.cnf.d/mariadb-server.cnf
-
 EXPOSE 3306
 CMD ["mysqld_safe"]
