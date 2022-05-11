@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  mariadb:
+    container_name: mariadb_container
+    build: ./mariadb
+    networks:
+      - default
+    volumes:
+      - mariadb:/var/lib/mysql/
+    restart: unless-stopped
+
+  wordpress:
+    container_name: wp_container
+    build: ./wordpress
+    volumes:
+      - wordpress:/var/www/wordpress/
+    depends_on:
+      - mariadb
+    networks:
+      - default
+    restart: unless-stopped
+  
+  nginx:
+    container_name: nginx_container
+    build: ./nginx
+    extra_hosts:
+      - "pdiaz-pa.42fr.com:127.0.0.1"
+    restart: unless-stopped
+    ports:
+      - "443:443"
+    networks:
+      - default
+    volumes:
+      - wordpress:/var/www/wordpress/
+    links:
+      - wordpress
+
+volumes:
+  mariadb:
+    name: mdbvolume
+    driver: local
+    driver_opts:
+      o: 'bind'
+      type: 'none'
+      device: '/home/pdiaz-pa/data/mariadb'
+  wordpress:
+    name: wpvolume
+    driver: local
+    driver_opts:
+      o: 'bind'
+      type: 'none'
+      device: '/home/pdiaz-pa/data/wordpress' 
