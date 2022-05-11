@@ -32,6 +32,6 @@ EXPOSE 9000
 #CMD ["php-fpm7.3", "-F"]
 CMD rm /var/www/wordpress/wp-config-sample.php && \
 	cp -a /tmp/build/. /var/www/ && \
-	wp core install --allow-root --title="Tremendo sitio web" --admin_name="pdiaz-pa" --admin_password="caldodepollo" --admin_email="pdiaz-pa@student.42.fr" --path="/var/www/wordpress/" --url="https://localhost/" && \
+	wp core install --allow-root --title="Tremendo sitio web" --admin_name="pdiaz-pa" --admin_password="caldodepollo" --admin_email="pdiaz-pa@student.42.fr" --path="/var/www/wordpress/" --url="https://pdiaz-pa.42fr.com/" && \
 	wp  --path=/var/www/wordpress/ user create --allow-root curro curro@example.com --role=subscriber --user_pass=caldodecurro && \
 	php-fpm7.3 -F
