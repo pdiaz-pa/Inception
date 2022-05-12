@@ -8,11 +8,11 @@ up:
 
 down:
 	docker-compose down 
-	 @rm -rf ~/data/mariadb/*
+	 @rm -rf ~/home/pdiaz-pa/data/mariadb/*
 
 fdown:
 	docker-compose down
-	@rm -rf ~/data/mariadb/* && rm -rf ~/data/wordpress/*
+	@rm -rf ~/home/pdiaz-pa/data/mariadb/* && rm -rf ~/home/pdiaz-pa/data/wordpress/*
 
 clean:
 	docker-compose down --rmi all
