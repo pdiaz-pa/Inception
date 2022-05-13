@@ -1,0 +1,16 @@
+docker build .
+docker rm testing2
+ docker run --name testing2 -dp 443:443 68d854dab93b
+
+dentro de nginx:
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+
+
+Navegar containers:
+docker exec -t -i "mycontainer" /bin/bash
+
+
+nginx default
+
+Conectarse por SSH a la máquina virtual
+ssh pdiaz-pa@127.0.0.1 -p 2222
