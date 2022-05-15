@@ -2,12 +2,17 @@ version: "3.9"
 
 services:
   mariadb:
+    env_file: .env
     container_name: mariadb_container
     build: ./requirements/mariadb
     networks:
       - default
     volumes:
       - mariadb:/var/lib/mysql/
+    environment:
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASS=${DB_PASS}
+      - MARIADB_NAME=${DB_NAME}
     restart: unless-stopped
 
   wordpress:
@@ -17,6 +22,11 @@ services:
       - wordpress:/var/www/wordpress/
     depends_on:
       - mariadb
+    environment:
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASS=${DB_PASS}
+      - MARIADB_NAME=${DB_NAME}
+      - MARIADB_HOST=${DB_HOST}
     networks:
       - default
     restart: unless-stopped
