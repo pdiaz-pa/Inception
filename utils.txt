@@ -14,3 +14,8 @@ nginx default
 
 Conectarse por SSH a la máquina virtual
 ssh pdiaz-pa@127.0.0.1 -p 2222
+
+checkear puertos abiertos
+sudo netstat -tulpn
+
+mysql --user=pdiaz-pa --password=caldodepollo wp_db

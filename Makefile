@@ -8,7 +8,6 @@ up:
 
 down:
 	docker-compose -f srcs/docker-compose.yml down
-#	 rm -rf /home/pdiaz-pa/data/mariadb/*
 
 fdown:
 	docker-compose -f srcs/docker-compose.yml down

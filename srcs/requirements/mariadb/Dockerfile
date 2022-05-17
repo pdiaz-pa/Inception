@@ -1,4 +1,4 @@
-FROM debian:10.11
+FROM debian:buster
 
 RUN apt-get update
 RUN apt-get install mariadb-server -y

@@ -1,4 +1,4 @@
-FROM debian:10.11
+FROM debian:buster
 RUN apt-get update
 RUN apt-get -y install wget
 #RUN apt-get -y install php7.3 php-mysql php-fpm
@@ -26,11 +26,6 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 RUN chmod 777 wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 EXPOSE 9000
-
-#CMD 	cp -a /tmp/build/. /var/www/ && \
-#	wp core install --allow-root --title="Tremendo sitio web" --admin_name="pdiaz-pa" --admin_password="caldodepollo" --admin_email="pdiaz-pa@student.42.fr" --path="/var/www/wordpress/" --url="https://pdiaz-pa.42fr.com/" && \
-#	wp  --path=/var/www/wordpress/ user create --allow-root curro curro@example.com --role=subscriber --user_pass=caldodecurro && \
-#	php-fpm7.3 -F
 
 ENTRYPOINT ["sh", "/tmp/user.sh"]
 
