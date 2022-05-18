@@ -27,6 +27,12 @@ services:
       - MARIADB_PASS=${DB_PASS}
       - MARIADB_NAME=${DB_NAME}
       - MARIADB_HOST=${DB_HOST}
+      - WP_ADMIN_NAME=${WP_ADMIN_NAME}
+      - WP_ADMIN_PASS=${WP_ADMIN_PASS}
+      - WP_ADMIN_MAIL=${WP_ADMIN_MAIL}
+      - WP_USER_NAME=${WP_USER_NAME}
+      - WP_USER_MAIL=${WP_USER_MAIL}
+      - WP_USER_PASS=${WP_USER_PASS}
     networks:
       - default
     restart: unless-stopped
@@ -43,7 +49,7 @@ services:
       - default
     volumes:
       - wordpress:/var/www/wordpress/
-    links:
+    depends_on:
       - wordpress
 
 volumes:

@@ -6,7 +6,7 @@ RUN apt-get -y install openssl
 
 WORKDIR /tmp/
 RUN mkdir /tmp/build/
-COPY nginx.conf /tmp/
+COPY /src/* /tmp/
 
 RUN rm -rf /etc/nginx/sites-enabled/* && \
 	mv nginx.conf /etc/nginx/sites-available/nginx.conf && \
